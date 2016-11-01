@@ -1,5 +1,5 @@
 # mean-spa-skeleton
-A skeleton I use for SPA projects with basic MEAN technologies integrated.
+A skeleton used for most projects using the MEAN stack.
 
 ## Prereqs
 * Node.js
