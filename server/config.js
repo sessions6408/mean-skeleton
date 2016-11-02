@@ -6,6 +6,7 @@ module.exports = {
   },
   server: {
     port: 3000,
-    distFolder: path.resolve(__dirname, '../client/dist')
+    distFolder: path.resolve(__dirname, '../client/dist'),
+    dbPath: path.resolve(__dirname, 'database')
   }
 };

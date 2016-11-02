@@ -12,6 +12,7 @@ var config = require('./config'); // ./config.js
 // Define routes
 var angular = require('./routes/angular'); // ./routes/angular.js
 var api_index = require('./routes/api/index'); // ./routes/api/index.js
+var api_action = require('./routes/api/action'); // ./routes/api/action.js
 
 // Create app from express
 var app = express();
@@ -32,8 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(config.server.distFolder));
 
-// Use routes
 app.use('/api', api_index) // Serve 'api_index' from /api
+app.use('/api/action', api_action); // Server 'api_action' from /api
 app.use('/', angular); // Serve 'angular' from /
 
 // catch 404 and forward to error handler
@@ -50,7 +51,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -61,7 +62,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
     error: {}
   });
